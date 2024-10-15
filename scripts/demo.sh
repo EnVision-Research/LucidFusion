@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 YAML="options/demo.yaml"
 DEMO='/hpc2hdd/home/hheat/projects/LGM/data_test/anya_rgba.png'
-CKPT='/hpc2hdd/home/hheat/projects/gs_shape/output/gs_render/gs_sd_98k_wbg_cat_random_test/best.ckpt'
+CKPT='/hpc2hdd/home/hheat/projects/Lucidfusion/output/demo/best.ckpt'
 OUTPUT='/hpc2hdd/home/hheat/projects/Lucidfusion/output/res'
 # LOG_DIR='stage_1_svd_43k_256_fp32'
 export CUDA_VISIBLE_DEVICES='0'

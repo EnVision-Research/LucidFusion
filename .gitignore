@@ -39,4 +39,4 @@ Thumbs.db
 *.env
 *.env.local
 
-output/*.ckpt
+output/demo/*.ckpt
