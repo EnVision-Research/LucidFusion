@@ -1,0 +1,80 @@
+group: demo
+name: demo
+load: 
+
+# batch_size: 1
+# debug: false
+image_size: [512,512]
+input_size: [256,256]
+gpu: 0
+output_root: output
+# resume: false
+seed: 0
+# num_sample: 8
+# input_frames: 4
+# test_num_sample: 8
+test_input_frames: 4
+proj_main_cam: true
+use_mask: true
+save_video: true
+save_frames: false
+fovy: 30.00000115370317
+# enable_gradient_checkpointing: false
+image_data: false
+single_input: false
+crm: true
+save_per_view_ply: true
+lucid_cam: false
+# datadir:
+ckpt:
+yaml:
+save_path:
+
+
+pretrain:
+    depth:
+
+arch:
+    svd: false
+
+
+# eval:
+#     batch_size: 44
+#     n_vis: 50
+
+data:
+    # num_classes_test: 200
+    # dataset_train: synthetic
+    # dataset_test: synthetic
+    num_workers: 6
+    bgcolor: 1
+    demo_path: /hpc2hdd/home/hheat/projects/gs_shape/temp
+
+rendering:
+    zfar: 2.5
+    znear: 0.5
+
+optim:
+    lr: 3.e-5
+    weight_decay: 0.05
+    clip_norm: 
+    amp: false 
+    accum: 1
+    sched: false
+    fix_dpt: false
+
+freq:
+    print: 200
+    print_eval: 100
+    scalar: 1000 # iterations
+    vis: 1000 # iterations
+    save_vis: 1000
+    ckpt_latest: 1000 # iterations
+    eval: 1
+
+# tb:
+#     num_images: [4,8]
+
+    
+
+
