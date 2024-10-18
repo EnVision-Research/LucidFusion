@@ -42,6 +42,7 @@ We are currently building an online demo of LucidFusion with Gradio. It is still
 ## 🚧 Todo
 
 - [x] Release the Stage 2 inference codes
+- [ ] Release our weights
 - [ ] Release the Gardio Demo
 - [ ] Release the Stage 1 and 2 training codes
 
