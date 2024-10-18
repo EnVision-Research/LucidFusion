@@ -112,8 +112,8 @@ def prepare_gso_data(opt):
         ref_imgs.append(image.float())
         ref_masks.append(mask)
 
-    rgb_input_map = torch.cat([resize_img(_img) for _img in ref_imgs], dim=-1)
-    ref_mask_input_map = resize_img(torch.stack(ref_masks, dim=0))
+    rgb_input_map = torch.cat([resize_img(_img) for _img in ref_imgs[:opt.test_input_frames]], dim=-1)
+    ref_mask_input_map = resize_img(torch.stack(ref_masks[:opt.test_input_frames], dim=0))
     var = edict()
     var.rgb_input_map = rgb_input_map.to(opt.device).unsqueeze(0)
     var.ref_mask_input_map = ref_mask_input_map.to(opt.device).unsqueeze(0)
