@@ -9,10 +9,10 @@ $\color{red}{\*}$: Equal contribution.
 
 ---
 
-<div align=center>
-TODO: GIF 
-
-Note: we compress these motion pictures for faster previewing.
+<div align="center">
+    <img src="resources/output_16.gif" width="95%"/>  
+    <br>
+    <p><i>Note: we compress these motion pictures for faster previewing.</i></p>
 </div>
 
 <div align=center>
