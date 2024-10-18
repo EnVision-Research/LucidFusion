@@ -47,6 +47,15 @@ We are currently building an online demo of LucidFusion with Gradio. It is still
 - [ ] Release the Stage 1 and 2 training codes
 
 ## 📍 Citation 
+If you find our work useful, please consider citing our paper.
 ```
 TODO
 ```
+
+## Acknowledgement
+This work is built on many amazing research works and open-source projects:
+- [gaussian-splatting](https://github.com/graphdeco-inria/gaussian-splatting) and [diff-gaussian-rasterization](https://github.com/graphdeco-inria/diff-gaussian-rasterization)
+- [ZeroShape](https://github.com/zxhuang1698/ZeroShape)
+- [LGM](https://github.com/3DTopia/LGM)
+
+Thanks for their excellent work and great contribution to 3D generation area.
