@@ -134,7 +134,7 @@ If you find our work useful, please consider citing our paper.
 TODO
 ```
 
-## Acknowledgement
+## 💼 Acknowledgement
 This work is built on many amazing research works and open-source projects:
 - [gaussian-splatting](https://github.com/graphdeco-inria/gaussian-splatting) and [diff-gaussian-rasterization](https://github.com/graphdeco-inria/diff-gaussian-rasterization)
 - [ZeroShape](https://github.com/zxhuang1698/ZeroShape)
