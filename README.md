@@ -23,7 +23,7 @@ Examples of cross-dataset content creations with our framework, the *LucidFusion
 </div>
 
 ## 🎏 Abstract
-We present a flexible end-to-end feed-forward framework, named the *LucidDreamer*, to generate high-resolution 3D Gaussians from unposed, sparse, and arbitrary numbers of multiview images.
+We present a flexible end-to-end feed-forward framework, named the *LucidFusion*, to generate high-resolution 3D Gaussians from unposed, sparse, and arbitrary numbers of multiview images.
 
 <details><summary>CLICK for the full abstract</summary>
 
@@ -55,6 +55,7 @@ conda activate LucidFusion
 ### Pretrained Weights
 
 Our pre-trained weights will be released soon, please check back!
+
 Our current model loads pre-trained diffusion model weights ([Stable Diffusion 2.1] (https://huggingface.co/stabilityai/stable-diffusion-2-1/tree/main) in default) for training purposes.
 
 ## 🔥 Inference
@@ -68,13 +69,32 @@ mkdir output/demo
 # Download the pretrained weights and name it as best.ckpt
 
 # Place the pretrained weights in LucidFusion/output/demo/best.ckpt
+```
+We have provided some preprocessed examples:
 
-# The result will be saved in the LucidFusion/output/demo/<obj name>/
+For GSO files, the example objects are "alarm", "chicken", "hat", "lunch_bag", "mario", and "shoe1".
 
+To run GSO demo:
+```
+# You can adjust "DEMO" filed inside the gso_demo.sh to load other examples.
+
+bash scripts/gso_demo.sh
+```
+
+To run images demo, masks are obtained using preprocess.py. The example objects are "nutella_new", "monkey_chair", "dog_chair".
+
+```
 bash scripts/demo.sh
 ```
 
-More example files will be released soon
+To run diffusion demo as single image to multi-view, we use the pixel diffusion trained in the CRM as we described in the paper. 
+
+You can also use other multi-view diffusion models to lift the single image to multi-view.
+
+```
+bash script/diffusion_demo.sh
+```
+
 
 You can also try your own example! To do that:
 
@@ -103,7 +123,7 @@ We are currently building an online demo of LucidFusion with Gradio. It is still
 
 ## 🚧 Todo
 
-- [x] Release the Stage 2 inference codes
+- [x] Release the inference codes
 - [ ] Release our weights
 - [ ] Release the Gardio Demo
 - [ ] Release the Stage 1 and 2 training codes
