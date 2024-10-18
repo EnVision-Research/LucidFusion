@@ -21,7 +21,10 @@ class StableDiffusion(nn.Module):
         self.device = opt.device
         self.precision_t = torch.float32
 
-        model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/stable-diffusion-2-1-base'
+        if opt.model_key:
+            model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/stable-diffusion-2-1-base'
+        else:
+            model_key = 'stabilityai/stable-diffusion-2-1'
         pipe = StableDiffusionPipeline.from_pretrained(model_key, torch_dtype=self.precision_t, use_safetensors=True)
         self.opt = opt
         self.get_gs_feat = get_gs_feat

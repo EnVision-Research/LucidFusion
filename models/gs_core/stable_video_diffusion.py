@@ -21,7 +21,10 @@ class StableDiffusion(nn.Module):
 
         self.device = opt.device
         self.precision_t = torch.float32 #torch.float16 if opt.optim.amp else torch.float32
-        model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/zeroscope_v2_576w'
+        if opt.model_key:
+            model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/zeroscope_v2_576w'
+        else:
+            model_key = 'cerspense/zeroscope_v2_576w'
         pipe = DiffusionPipeline.from_pretrained(model_key, torch_dtype=self.precision_t)
         self.opt = opt
         self.get_gs_feat = get_gs_feat

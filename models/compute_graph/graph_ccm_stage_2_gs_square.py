@@ -15,10 +15,16 @@ class Graph(nn.Module):
         super().__init__()
         if not opt.arch.svd:
             from models.gs_core.stable_diffusion import StableDiffusion
-            vae_model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/stable-diffusion-2-1-base/vae'
+            if opt.model_key:
+                vae_model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/stable-diffusion-2-1-base/vae'
+            else:
+                vae_model_key = 'stabilityai/stable-diffusion-2-1/vae'
         else:
             from models.gs_core.stable_video_diffusion import StableDiffusion
-            vae_model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/zeroscope_v2_576w/vae'
+            if opt.model_key:
+                vae_model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/zeroscope_v2_576w/vae'
+            else:
+                vae_model_key = 'cerspense/zeroscope_v2_576w/vae'
 
         self.dpt_depth = StableDiffusion(opt, get_gs_feat=True)
         if opt.pretrain.depth and not opt.resume:
