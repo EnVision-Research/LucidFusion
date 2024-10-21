@@ -56,11 +56,11 @@ conda activate LucidFusion
 
 Our pre-trained weights will be released soon, please check back!
 
-Our current model loads pre-trained diffusion model weights ([Stable Diffusion 2.1] (https://huggingface.co/stabilityai/stable-diffusion-2-1/tree/main) in default) for training purposes.
+Our current model loads pre-trained diffusion model weights (by default, [Stable Diffusion 2.1](https://huggingface.co/stabilityai/stable-diffusion-2-1/tree/main)) for training purposes.
 
 ## 🔥 Inference
 A shell script is provided with example files.
-To run, you first need to setup the pretrained weights as follows:
+To run, you first need to set up the pre-trained weights as follows:
 
 ```
 cd LucidFusion
@@ -70,26 +70,24 @@ mkdir output/demo
 
 # Place the pretrained weights in LucidFusion/output/demo/best.ckpt
 ```
-We have provided some preprocessed examples:
+We have also provided some preprocessed examples.
 
 For GSO files, the example objects are "alarm", "chicken", "hat", "lunch_bag", "mario", and "shoe1".
 
 To run GSO demo:
 ```
-# You can adjust "DEMO" filed inside the gso_demo.sh to load other examples.
+# You can adjust "DEMO" field inside the gso_demo.sh to load other examples.
 
 bash scripts/gso_demo.sh
 ```
 
-To run images demo, masks are obtained using preprocess.py. The example objects are "nutella_new", "monkey_chair", "dog_chair".
+To run the images demo, masks are obtained using preprocess.py. The example objects are "nutella_new", "monkey_chair", "dog_chair".
 
 ```
 bash scripts/demo.sh
 ```
 
-To run diffusion demo as single image to multi-view, we use the pixel diffusion trained in the CRM as we described in the paper. 
-
-You can also use other multi-view diffusion models to lift the single image to multi-view.
+To run the diffusion demo as a single-image-to-multi-view setup, we use the pixel diffusion trained in the CRM, as described in the paper. You can also use other multi-view diffusion models to generate multi-view outputs from a single image.
 
 ```
 bash script/diffusion_demo.sh
@@ -98,7 +96,7 @@ bash script/diffusion_demo.sh
 
 You can also try your own example! To do that:
 
-First obtain images and place them in the examples folder
+1. Obtain images and place them in the examples folder:
 ```
 LucidFusion
 ├── examples/
@@ -107,13 +105,15 @@ LucidFusion
 |   |   ├── "image_02.png"
 |   |   ├── ...
 ```
-Then you need to run preprocess.py to extract recentered image and its mask:
+2. Run preprocess.py to extract the recentered image and its mask:
 ```
 # Run the following will create two folders (images, masks) in "your obj name" folder.
 # You can check to see if the extract mask is corrected.
 python preprocess.py "examples/"you obj name" --outdir examples/"your obj name"
+```
 
-# Modify demo.sh to DEMO='examples/"you obj name" ' then run the file
+3. Modify demo.sh to set DEMO='examples/"your_obj_name"', then run the script:
+```
 bash scripts/demo.sh
 ```
 
