@@ -107,12 +107,12 @@ LucidFusion
 ```
 2. Run preprocess.py to extract the recentered image and its mask:
 ```
-# Run the following will create two folders (images, masks) in "your obj name" folder.
+# Run the following will create two folders (images, masks) in "your-obj-name" folder.
 # You can check to see if the extract mask is corrected.
-python preprocess.py "examples/"you obj name" --outdir examples/"your obj name"
+python preprocess.py examples/you-obj-name --outdir examples/your-obj-name
 ```
 
-3. Modify demo.sh to set DEMO='examples/"your_obj_name"', then run the script:
+3. Modify demo.sh to set DEMO=“examples/your-obj-name”, then run the script:
 ```
 bash scripts/demo.sh
 ```
