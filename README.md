@@ -37,26 +37,33 @@ Our code is now released!
 
 ### Install
 ```
+conda create -n LucidFusion python=3.9.19
+conda activate LucidFusion
+
+# For example, we use torch 2.3.1 + cuda 11.8, and tested with latest torch (2.4.1) which works with the latest xformers (0.0.28).
+pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu118
+
 # Xformers is required! please refer to https://github.com/facebookresearch/xformers for details.
-# For example, we use torch 2.3.1 + cuda 11.8
-conda install pytorch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 pytorch-cuda=11.8 -c pytorch -c nvidia
 # [linux only] cuda 11.8 version
 pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu118
 
-# For 3D Gaussian Splatting, we use the official installation. Please refer to https://github.com/graphdeco-inria/gaussian-splatting for details
-git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
+# For 3D Gaussian Splatting, we use LGM modified version, details please refer to https://github.com/3DTopia/LGM
+git clone --recursive https://github.com/ashawkey/diff-gaussian-rasterization
 pip install ./diff-gaussian-rasterization
 
 # Other dependencies
-conda env create -f environment.yml
-conda activate LucidFusion
+pip install -r requirements.txt
 ```
 
 ### Pretrained Weights
 
 Our pre-trained weights will be released soon, please check back!
 
-Our current model loads pre-trained diffusion model weights (by default, [Stable Diffusion 2.1](https://huggingface.co/stabilityai/stable-diffusion-2-1/tree/main)) for training purposes.
+Our current model loads pre-trained diffusion model for config. We use stable-diffusion-2-1-base, to download it, simply run
+```
+python pretrained/download.py
+```
+You can omit this step if you already have stable-diffusion-2-1-base, and simply update "model_key" with your local SD-2-1 path for scripts in scripts/ folder.
 
 ## 🔥 Inference
 A shell script is provided with example files.
@@ -88,6 +95,10 @@ bash scripts/demo.sh
 ```
 
 To run the diffusion demo as a single-image-to-multi-view setup, we use the pixel diffusion trained in the CRM, as described in the paper. You can also use other multi-view diffusion models to generate multi-view outputs from a single image.
+
+For dependencies issue, please check https://github.com/thu-ml/CRM
+
+We also provide LGM's imagegen diffusion, simply set --crm=false in diffusion_demo.sh. You can change the --seed with different seed option.
 
 ```
 bash script/diffusion_demo.sh

@@ -7,25 +7,15 @@ from diffusers import AutoencoderKL
 from utils.util import toggle_grad, get_child_state_dict
 from models.gs_core.gs import GaussianRenderer
 from einops import rearrange
-# from torchvision.utils import save_image
-# torch.autograd.set_detect_anomaly(True)
 
 class Graph(nn.Module):
     def __init__(self, opt):
         super().__init__()
         if not opt.arch.svd:
             from models.gs_core.stable_diffusion import StableDiffusion
-            if opt.model_key:
-                vae_model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/stable-diffusion-2-1-base/vae'
-            else:
-                vae_model_key = 'stabilityai/stable-diffusion-2-1/vae'
         else:
             from models.gs_core.stable_video_diffusion import StableDiffusion
-            if opt.model_key:
-                vae_model_key = '/hpc2hdd/home/hheat/projects/shape_ccm/pretrained/zeroscope_v2_576w/vae'
-            else:
-                vae_model_key = 'cerspense/zeroscope_v2_576w/vae'
-
+        vae_model_key = f'{opt.model_key}/vae'
         self.dpt_depth = StableDiffusion(opt, get_gs_feat=True)
         if opt.pretrain.depth and not opt.resume:
             self.load_pretrained_depth(opt)
