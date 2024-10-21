@@ -66,28 +66,6 @@ def compose_extrinsic_RT(RT: torch.Tensor):
         torch.tensor([[0, 0, 0, 1]], dtype=RT.dtype, device=RT.device)#.repeat(RT.shape[0], 1, 1)
         ], dim=0)
 
-def get_ccm_pixel_grid(H, W):
-    y_range = torch.arange(H, dtype=torch.float32)
-    x_range = torch.arange(W, dtype=torch.float32)
-    Y, X = torch.meshgrid(y_range, x_range, indexing='ij')
-    Z = torch.ones_like(Y)
-    xyz_grid = torch.stack([X, Y, Z],dim=-1).view(-1,3) 
-    return xyz_grid
-
-def ccm_to_main(opt, ccm, w2c, mask):
-    H, W = opt.H, opt.W
-    ccm[(mask <=0.5).view(-1, H*W)] = 0
-
-    # proj to main cam, [B, 3, 3] @ [B, 3, H*W] -> B, H*W, 3
-    seen_points = (w2c[:,:,:3]@ccm.permute(0,2,1)).permute(0,2,1).contiguous()
-    #B, H*W, 3
-    ori = w2c[:,:,3].unsqueeze(1).expand(seen_points.shape).contiguous()
-    ori_radius = w2c[:,:,3].norm(dim=-1).unsqueeze(1)
-    #B, H*W, 3
-    seen_points = ori + seen_points
-    seen_points[:,:,2] = seen_points[:,:,2] - ori_radius
-
-    return seen_points
 
 def vis_ccm_map(ccm, H, W, rgb=None, file_path=None):
     '''
@@ -115,39 +93,6 @@ def vis_ccm_map(ccm, H, W, rgb=None, file_path=None):
             Image.fromarray(rgb).save(img_fn)
             # save_image(rgb, img_fn)
     save_image(vis, file_path)
-        
-
-def depth_to_ccm(depth, intr, pose, mask):
-    '''
-    depth: [1, H, W]
-    intr: [3, 3]
-    pose: [4, 4]
-    '''
-    _, H, W = depth.shape
-    depth = depth.squeeze(0)
-    
-    # [3, 3]
-    K_inv = torch.linalg.inv(intr).float()
-    # [3, 4]
-    c2w = torch.linalg.inv(pose).float()[:3,:4]
-    # [3, H*W]
-    pixel_grid = get_ccm_pixel_grid(H, W).T
-    # [3, H*W], in camera coordinates
-    ray_dirs = K_inv @ pixel_grid.contiguous()
-    # [H*W, 3] in world coordinates
-    ray_dirs = (c2w[:,:3] @ ray_dirs).T
-    #H*W, 3
-    ray_oris = c2w[:,3].expand(ray_dirs.shape).contiguous() 
-    # [H*W, 3], ccm
-    seen_points = ray_oris + ray_dirs * depth.view(H*W, 1)
-    # seen_points = (seen_points + 0.6) / 1.2
-    seen_points[(mask <= 0.5).view(H*W)] = 0
-    # [H, W, 3]
-    seen_points = seen_points.reshape(H, W, 3)
-    seen_points[...,1] *= -1 # Xinli accidently rotated, to match paper implementation
-
-    # [3, H, W]
-    return seen_points.permute(2, 0, 1)
 
 def to_hom(X):
     '''

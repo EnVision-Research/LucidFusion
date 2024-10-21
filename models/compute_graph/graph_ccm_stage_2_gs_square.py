@@ -99,11 +99,6 @@ class Graph(nn.Module):
         rotation = self.rot_act(x[..., 4:8])
         rgbs = self.rgb_act(x[..., 8:])
 
-        # if not get_loss:
-        #     var.opacity = opacity.clone().detach() # for vis opacity [B, V*H*W, 1]
-        #     var.opacity = (var.opacity>0.5).float()
-        #     var.opacity[:,:slicer*(var.rgb_input_map.shape[-1] * var.rgb_input_map.shape[-2]),:][(var.ref_mask_input_map<=0.5).view(batch_size, -1)] = 0
-
         rgb_raw = rearrange(var.rgb_input_map, 'b v c h w -> b (v h w) c')
         rgbs = rgbs + rgb_raw
 

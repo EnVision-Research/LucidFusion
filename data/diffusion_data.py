@@ -24,8 +24,8 @@ from PIL import Image
 ##### CRM related ######
 
 def setup_crm_diffusion():
-    stage1_config = OmegaConf.load("/hpc2hdd/home/hheat/projects/Lucidfusion/CRM/configs/nf7_v3_SNR_rd_size_stroke.yaml").config
-    stage2_config = OmegaConf.load("/hpc2hdd/home/hheat/projects/Lucidfusion/CRM/configs/stage2-v2-snr.yaml").config
+    stage1_config = OmegaConf.load("CRM/configs/nf7_v3_SNR_rd_size_stroke.yaml").config
+    stage2_config = OmegaConf.load("CRM/configs/stage2-v2-snr.yaml").config
     stage2_sampler_config = stage2_config.sampler
     stage1_sampler_config = stage1_config.sampler
 
@@ -114,7 +114,6 @@ def prepare_crm_data(opt, pipeline=None):
     if pipeline == None:
         raise
     path = opt.data.demo_path
-    # save_path = '/hpc2hdd/home/hheat/projects/gs_shape/temp/mv_gen'
     folder = path.split('/')[-1].split('.')[0]
     save_folder = os.path.join(opt.save_path, folder)
     os.makedirs(save_folder, exist_ok=True)
@@ -212,8 +211,6 @@ def prepare_imagegen_data(opt, pipe=None):
         _carved_image = _carved_image[..., :3] * _carved_image[..., 3:4] + (1 - _carved_image[..., 3:4])
         imgs.append(_carved_image)
         masks.append(_mask)
-    # mv_image = np.stack([mv_image[1], mv_image[2], mv_image[3], mv_image[0]], axis=0) # [4, 256, 256, 3], float32
-    # input_image = torch.from_numpy(mv_image).permute(0, 3, 1, 2).float().to(opt.device) # [4, 3, 256, 256]
     gen_image = np.stack([imgs[1], imgs[2], imgs[3], imgs[0]], axis=0)
     masks = np.stack([masks[1], masks[2], masks[3], masks[0]], axis=0)
 
