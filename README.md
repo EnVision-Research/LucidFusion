@@ -5,7 +5,7 @@
 $\color{red}{\*}$: Equal contribution.
 \**: Corresponding author.
 
-[Paper PDF (Arxiv)](Coming Soon) | [Project Page (Coming Soon)]() | [Gradio Demo](Coming Soon)
+[Paper PDF (Arxiv)](https://arxiv.org/abs/2410.15636) | [Project Page](https://heye0507.github.io/LucidFusion_page/) | [Model Weights](https://huggingface.co/heye0507/LucidFusion) | [Gradio Demo](Coming Soon) 
 
 ---
 
@@ -33,7 +33,7 @@ We present a flexible end-to-end feed-forward framework, named the *LucidFusion*
 
 ## 🔧 Training Instructions
 
-Our code is now released! 
+Our inference code is now released! We will release our training code soon!
 
 ### Install
 ```
@@ -57,13 +57,13 @@ pip install -r requirements.txt
 
 ### Pretrained Weights
 
-Our pre-trained weights will be released soon, please check back!
-
 Our current model loads pre-trained diffusion model for config. We use stable-diffusion-2-1-base, to download it, simply run
 ```
 python pretrained/download.py
 ```
 You can omit this step if you already have stable-diffusion-2-1-base, and simply update "model_key" with your local SD-2-1 path for scripts in scripts/ folder.
+
+Our pre-trained weight is released! Please check [weights](https://huggingface.co/heye0507/LucidFusion)
 
 ## 🔥 Inference
 A shell script is provided with example files.
@@ -135,14 +135,22 @@ We are currently building an online demo of LucidFusion with Gradio. It is still
 ## 🚧 Todo
 
 - [x] Release the inference codes
-- [ ] Release our weights
+- [x] Release our weights
 - [ ] Release the Gardio Demo
 - [ ] Release the Stage 1 and 2 training codes
 
 ## 📍 Citation 
 If you find our work useful, please consider citing our paper.
 ```
-TODO
+@misc{he2024lucidfusion,
+      title={LucidFusion: Generating 3D Gaussians with Arbitrary Unposed Images}, 
+      author={Hao He and Yixun Liang and Luozhou Wang and Yuanhao Cai and Xinli Xu and Hao-Xiang Guo and Xiang Wen and Yingcong Chen},
+      year={2024},
+      eprint={2410.15636},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2410.15636}, 
+}
 ```
 
 ## 💼 Acknowledgement
