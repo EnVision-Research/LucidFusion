@@ -1,8 +1,8 @@
 # LucidFusion: Generating 3D Gaussians with Arbitrary Unposed Images
 
-[Hao He](https://heye0507.github.io/)$^{\color{red}{\*}}$ [Yixun Liang](https://yixunliang.github.io/)$^{\color{red}{\*}}$, [Luozhou Wang](https://wileewang.github.io/), [Yuanhao Cai](https://github.com/caiyuanhao1998), [Xinli Xu](https://scholar.google.com/citations?user=lrgPuBUAAAAJ&hl=en&inst=1381320739207392350), [Hao-Xiang Guo](), [Xiang Wen](), [Yingcong Chen](https://www.yingcong.me)$^{\**}$
+[Hao He](https://heye0507.github.io/)$^{\*}$ [Yixun Liang](https://yixunliang.github.io/)$^{\*}$, [Luozhou Wang](https://wileewang.github.io/), [Yuanhao Cai](https://github.com/caiyuanhao1998), [Xinli Xu](https://scholar.google.com/citations?user=lrgPuBUAAAAJ&hl=en&inst=1381320739207392350), [Hao-Xiang Guo](), [Xiang Wen](), [Yingcong Chen](https://www.yingcong.me)$^{\**}$
 
-$\color{red}{\*}$: Equal contribution.
+\*: Equal contribution.
 \**: Corresponding author.
 
 [Paper PDF (Arxiv)](https://arxiv.org/abs/2410.15636) | [Project Page](https://heye0507.github.io/LucidFusion_page/) | [Model Weights](https://huggingface.co/heye0507/LucidFusion) | [Gradio Demo](Coming Soon) 
