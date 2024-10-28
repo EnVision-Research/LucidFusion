@@ -56,12 +56,13 @@ pip install -r requirements.txt
 ```
 
 ### Pretrained Weights
+Our pre-trained weight is now released! Please check [weights](https://huggingface.co/heye0507/LucidFusion).
 
 To download the pre-trained weights, simply run
 ```
 python download.py
 ```
-Our pre-trained weight is now released! Please check [weights](https://huggingface.co/heye0507/LucidFusion)
+
 
 ## 🔥 Inference
 A shell script is provided with example files. Please make sure pre-trained weights is downloaded in the "pretrained" folder
