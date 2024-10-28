@@ -57,25 +57,17 @@ pip install -r requirements.txt
 
 ### Pretrained Weights
 
-Our current model loads pre-trained diffusion model for config. We use stable-diffusion-2-1-base, to download it, simply run
+To download the pre-trained weights, simply run
 ```
-python pretrained/download.py
+python download.py
 ```
-You can omit this step if you already have stable-diffusion-2-1-base, and simply update "model_key" with your local SD-2-1 path for scripts in scripts/ folder.
-
-Our pre-trained weight is released! Please check [weights](https://huggingface.co/heye0507/LucidFusion)
+Our pre-trained weight is now released! Please check [weights](https://huggingface.co/heye0507/LucidFusion)
 
 ## 🔥 Inference
-A shell script is provided with example files.
-To run, you first need to set up the pre-trained weights as follows:
-
+A shell script is provided with example files. Please make sure pre-trained weights is downloaded in the "pretrained" folder
 ```
 cd LucidFusion
 mkdir output/demo
-
-# Download the pretrained weights and name it as best.ckpt
-
-# Place the pretrained weights in LucidFusion/output/demo/best.ckpt
 ```
 We have also provided some preprocessed examples.
 
@@ -130,7 +122,12 @@ bash scripts/demo.sh
 
 ## 🤗 Gradio Demo
 
-We are currently building an online demo of LucidFusion with Gradio. It is still under development, and will coming out soon!
+For Gradio Demo test version, simply run
+```
+python app.py
+```
+
+Please note this demo is still under development, and check back later for the full version!
 
 ## 🚧 Todo
 
