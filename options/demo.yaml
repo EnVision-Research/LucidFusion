@@ -18,7 +18,7 @@ single_input: false
 crm: true
 save_per_view_ply: false
 lucid_cam: true
-model_key: pretrained/sd-2-1-base
+model_key:
 ckpt:
 yaml:
 save_path:

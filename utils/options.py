@@ -33,6 +33,13 @@ def parse_arguments(args):
     opt_cmd = edict(opt_cmd)
     return opt_cmd
 
+def gradio_set(opt_cmd={}, opt_fname=None, verbose=True, safe_check=False):
+    if opt_fname == None:
+        raise ValueError('Not config file, exiting...')
+    opt_cmd = edict(opt_cmd)
+    opt_cmd.yaml = opt_fname
+    return set(opt_cmd, verbose, safe_check)
+
 def set(opt_cmd={}, verbose=True, safe_check=True):
     print("setting configurations...")
     fname = opt_cmd.yaml # load from yaml file

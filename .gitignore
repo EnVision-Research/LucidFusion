@@ -41,3 +41,10 @@ Thumbs.db
 
 output/demo/*.ckpt
 output/
+pretrained/embeddings
+pretrained/gsdecoder
+pretrained/unet
+pretrained/vae
+pretrained/.huggingface
+pretrained/resources
+pretrained/*.md

@@ -2,7 +2,7 @@ from audioop import mul
 from transformers import CLIPTextModel, CLIPTokenizer, logging
 from diffusers import StableDiffusionPipeline, DiffusionPipeline, DDPMScheduler, DDIMScheduler, EulerDiscreteScheduler, \
                       EulerAncestralDiscreteScheduler, DPMSolverMultistepScheduler, ControlNetModel, \
-                      DDIMInverseScheduler, UNet2DConditionModel
+                      DDIMInverseScheduler, UNet2DConditionModel,AutoencoderKL
 from diffusers.utils.import_utils import is_xformers_available
 from os.path import isfile
 from pathlib import Path
@@ -21,26 +21,18 @@ class StableDiffusion(nn.Module):
         self.device = opt.device
         self.precision_t = torch.float32
         model_key = f'{opt.model_key}'
-        pipe = StableDiffusionPipeline.from_pretrained(model_key, torch_dtype=self.precision_t, use_safetensors=True)
         self.opt = opt
         self.get_gs_feat = get_gs_feat
-        pipe = pipe.to(self.device)
-        pipe.enable_xformers_memory_efficient_attention()
-
-        pipe = pipe
-        self.vae = pipe.vae
-        tokenizer = pipe.tokenizer
-        text_encoder = pipe.text_encoder
-        self.unet = pipe.unet
-
+        self.vae = AutoencoderKL.from_pretrained(model_key, subfolder = 'vae', torch_dtype=self.precision_t, use_safetensors=True).to(self.device)
+        self.unet = UNet2DConditionModel.from_pretrained(model_key,subfolder = 'unet',  torch_dtype=self.precision_t, use_safetensors=True).to(self.device) #pipe.unet
+        self.unet.enable_xformers_memory_efficient_attention()
+        self.vae.enable_xformers_memory_efficient_attention()
         # Freeze vae and text_encoder and set unet to trainable
         self.vae.encoder.requires_grad_(False)
         self.vae.decoder.requires_grad_(True)
         self.unet.requires_grad_(True)
 
-        inputs = tokenizer([''], padding='max_length', max_length=tokenizer.model_max_length, truncation=True, return_tensors='pt')
-        self.embeddings = text_encoder(inputs.input_ids.to(self.device))[0]
-        
+        self.embeddings = torch.load(os.path.join(model_key,'embeddings/embeddings.pt')).to(self.device) #/hpc2hdd/home/hheat/projects/ckpt/embeddings/embeddings.pt
         self.t = torch.tensor([int(999)]).to(self.device)
 
         ### GS render required ######

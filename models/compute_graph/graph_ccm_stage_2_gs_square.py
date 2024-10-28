@@ -15,7 +15,6 @@ class Graph(nn.Module):
             from models.gs_core.stable_diffusion import StableDiffusion
         else:
             from models.gs_core.stable_video_diffusion import StableDiffusion
-        vae_model_key = f'{opt.model_key}/vae'
         self.dpt_depth = StableDiffusion(opt, get_gs_feat=True)
         if opt.pretrain.depth and not opt.resume:
             self.load_pretrained_depth(opt)
@@ -23,9 +22,7 @@ class Graph(nn.Module):
             toggle_grad(self.dpt_depth, False)
 
 
-        vae = AutoencoderKL.from_pretrained(vae_model_key, torchdtype=torch.float32, 
-                                            latent_channels=320, out_channels=11, low_cpu_mem_usage=False, 
-                                            ignore_mismatched_sizes=True)
+        vae = AutoencoderKL.from_pretrained(opt.model_key, subfolder = 'gsdecoder', torch_dtype=torch.float32, use_safetensors=True)
         vae.enable_xformers_memory_efficient_attention()
         self.gs_decoder = vae.decoder
         self.pos_act = lambda x: torch.tanh(x)
@@ -33,7 +30,6 @@ class Graph(nn.Module):
         self.opacity_act = lambda x: torch.sigmoid(x)
         self.rot_act = lambda x: F.normalize(x, dim=-1)
         self.rgb_act = lambda x: torch.tanh(x)
-
         self.gs = GaussianRenderer(image_height=opt.H, image_width=opt.W, zfar=opt.rendering.zfar, znear=opt.rendering.znear, fovy=opt.fovy)
         self.loss_fns = Loss(opt)
 

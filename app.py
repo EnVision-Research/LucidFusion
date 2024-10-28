@@ -1,27 +1,30 @@
+import gradio as gr
 import torch
 import numpy as np
 import os
-import sys
 import shutil
-import utils.options as options
-import utils.util_vis as util_vis
-from utils.util import move_to_device
 from tqdm import tqdm
-from models.compute_graph.graph_ccm_stage_2_gs_square import Graph
-from glob import glob
-
-import imageio
-from torchvision.utils import save_image
-from einops import rearrange
- 
+from utils.util import move_to_device
 from utils.camera import generate_circle_poses, generate_lgm_poses, get_proj_matrix, convert_to_opencv
 from data.mv_input_data import prepare_real_data, prepare_gso_data
 from data.diffusion_data import prepare_crm_data, prepare_imagegen_data, setup_crm_diffusion, setup_imagegen_diffusion
+from models.compute_graph.graph_ccm_stage_2_gs_square import Graph
+import imageio
+from torchvision.utils import save_image
+from einops import rearrange
+import utils.options as options
+import utils.util_vis as util_vis
+from utils.options import gradio_set
 
+YAML = 'options/demo.yaml'
 
+opt = gradio_set(opt_fname=YAML)
+opt.device = 0  # or "cuda" if applicable
+graph = Graph(opt).to(opt.device)
+graph.eval()
+
+# Assuming your `gen` function remains unchanged, as defined above
 def gen(opt, graph, pipeline=None):
-    if (opt.image_data == True) and (opt.single_input == True):
-        raise # you cant do both
     if opt.image_data:
         print('[INFO] Using random image input data ...')
         data_list, name_list, load_path = prepare_real_data(opt)
@@ -31,7 +34,7 @@ def gen(opt, graph, pipeline=None):
             data_list, name_list, load_path = prepare_crm_data(opt, pipeline)
         else:
             print('[INFO] Using MV dream...')
-            data_list, name_list, load_path = prepare_imagegen_data(opt, pipeline)
+            data_list, name_list, load_path = prepare_mvdream_data(opt, pipeline)
     else:
         # gso demo in paper, no need to rmbg
         print('[INFO] Using demo GSO data ...')
@@ -99,30 +102,52 @@ def gen(opt, graph, pipeline=None):
                 
     print('==> results saved at folder: {}/preds'.format(opt.output_path))
 
+# Gradio wrapper for the `main` function
+def gradio_main(input_path, image_input=True,
+    single_input=False, crm=False,
+    lucid_cam=False, save_frames=False, save_per_view_ply=False, save_video=False
+):
+    # Set options
+    opt.data.demo_path = input_path
+    opt.single_input = single_input
+    opt.image_data = image_input
+    opt.crm = crm
+    opt.lucid_cam = lucid_cam
+    opt.save_frames = save_frames
+    opt.save_per_view_ply = save_per_view_ply
+    opt.save_video = save_video
+    opt.save_path = 'output/demo'
 
-def main():
-    opt_cmd = options.parse_arguments(sys.argv[1:])
-    opt = options.set(opt_cmd=opt_cmd, safe_check=False)
-    opt.device = 0
+
     pipeline = None
-    
-    # build model
-    task_ckpt = opt.yaml.split('/')[-1].split('.')[0]
-    if task_ckpt != opt.task:
-        raise ValueError('Detected different tasks between specified and the yaml, please double check!')
-
-    # load checkpoint
-    graph = Graph(opt).to(opt.device)
-    graph.eval()
-    print('==> checkpoint loaded')
     if opt.single_input:
-        if opt.crm:
-            pipeline = setup_crm_diffusion()
-        else:
-            pipeline = setup_imagegen_diffusion()
-            # mv dream should also setup here!!!!
-    
+        from utils.util_demo import setup_crm_diffusion, setup_imagegen_diffusion
+        pipeline = setup_crm_diffusion() if opt.crm else setup_imagegen_diffusion()
+
     gen(opt, graph, pipeline=pipeline)
 
+    # Retrieve results (assuming results are saved to opt.output_path/preds)
+    video_path = f"{opt.output_path}/preds/{opt.output_path.split('/')[-1]}_video_rgb.mp4"
+    return video_path if os.path.exists(video_path) else "Output video not generated."
+
+# Gradio Interface
+demo = gr.Interface(
+    fn=gradio_main,
+    inputs=[
+        gr.Textbox(label="Input Path", placeholder="Path to input data"),
+        gr.Checkbox(label="Image Input"),
+        gr.Checkbox(label="Single Input"),
+        gr.Checkbox(label="CRM Mode"),
+        gr.Checkbox(label="Use Lucid Cam"),
+        gr.Checkbox(label="Save Frames"),
+        gr.Checkbox(label="Save Per View PLY"),
+        gr.Checkbox(label="Save Video")
+    ],
+    outputs="video",
+    title="3D Generation Demo",
+    description="Run the 3D generation pipeline with configurable options."
+)
+
+# Run the demo
 if __name__ == "__main__":
-    main()
+    demo.launch(server_name="0.0.0.0", server_port=9999)
