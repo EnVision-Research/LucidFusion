@@ -48,3 +48,4 @@ pretrained/vae
 pretrained/.huggingface
 pretrained/resources
 pretrained/*.md
+test_app.py
