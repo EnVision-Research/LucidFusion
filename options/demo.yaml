@@ -18,7 +18,7 @@ single_input: false
 crm: true
 save_per_view_ply: false
 lucid_cam: true
-model_key:
+model_key: pretrained
 ckpt:
 yaml:
 save_path:
