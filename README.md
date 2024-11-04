@@ -22,6 +22,19 @@ Examples of cross-dataset content creations with our framework, the *LucidFusion
 
 </div>
 
+## 📢 News
+- 2024-11-04: LucidFusion now supports 512x512 resolution inputs. Demo results released, and we will release the model soon!   <be>
+
+### Demo results of 512 model
+
+<p align="center">
+  <img src="resources/princess.gif" width="30%" alt="Princess">
+  <img src="resources/girl_head.gif" width="30%" alt="Girl Head">
+  <img src="resources/boy_running.gif" width="30%" alt="Boy Running">
+</p>
+
+
+
 ## 🎏 Abstract
 We present a flexible end-to-end feed-forward framework, named the *LucidFusion*, to generate high-resolution 3D Gaussians from unposed, sparse, and arbitrary numbers of multiview images.
 
