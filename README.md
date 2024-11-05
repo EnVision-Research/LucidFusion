@@ -33,6 +33,12 @@ Examples of cross-dataset content creations with our framework, the *LucidFusion
   <img src="resources/boy_running.gif" width="30%" alt="Boy Running">
 </p>
 
+<p align="center">
+  <img src="resources/res_chief.gif" width="30%" alt="Chief">
+  <img src="resources/girl_head_3.gif" width="30%" alt="Girl Head">
+  <img src="resources/res_knight.gif" width="30%" alt="Knight">
+</p>
+
 
 
 ## 🎏 Abstract
