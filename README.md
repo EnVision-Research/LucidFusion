@@ -22,6 +22,25 @@ Examples of cross-dataset content creations with our framework, the *LucidFusion
 
 </div>
 
+## 📢 News
+- 2024-11-04: LucidFusion now supports 512x512 resolution inputs. Demo results released, and we will release the model soon!   <be>
+
+### Demo results of 512 model
+
+<p align="center">
+  <img src="resources/princess.gif" width="30%" alt="Princess">
+  <img src="resources/girl_head.gif" width="30%" alt="Girl Head">
+  <img src="resources/boy_running.gif" width="30%" alt="Boy Running">
+</p>
+
+<p align="center">
+  <img src="resources/res_chief.gif" width="30%" alt="Chief">
+  <img src="resources/girl_head_3.gif" width="30%" alt="Girl Head">
+  <img src="resources/res_knight.gif" width="30%" alt="Knight">
+</p>
+
+
+
 ## 🎏 Abstract
 We present a flexible end-to-end feed-forward framework, named the *LucidFusion*, to generate high-resolution 3D Gaussians from unposed, sparse, and arbitrary numbers of multiview images.
 
@@ -56,12 +75,13 @@ pip install -r requirements.txt
 ```
 
 ### Pretrained Weights
+Our pre-trained weight is now released! Please check [weights](https://huggingface.co/heye0507/LucidFusion).
 
 To download the pre-trained weights, simply run
 ```
 python download.py
 ```
-Our pre-trained weight is now released! Please check [weights](https://huggingface.co/heye0507/LucidFusion)
+
 
 ## 🔥 Inference
 A shell script is provided with example files. Please make sure pre-trained weights is downloaded in the "pretrained" folder
