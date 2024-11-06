@@ -1,11 +1,5 @@
 # These code is adapted from https://github.com/dreamgaussian/dreamgaussian/blob/main/process.py
 # The original code is licensed under the MIT License.
-
-# python preprocess.py /home/haohe/project/ZeroShape/temp/bear_unprocessed --outdir /home/haohe/project/ZeroShape/temp/bear  --size 256 
-# python preprocess.py /hpc2hdd/home/hheat/projects/gs_shape/temp/skates --outdir /hpc2hdd/home/hheat/projects/gs_shape/temp/skates
-# python preprocess.py /hpc2hdd/home/hheat/projects/gs_shape/temp/yc_demo/kunkun --outdir /hpc2hdd/home/hheat/projects/gs_shape/temp/yc_demo/kunkun
-
-
 import os
 import glob
 import sys
