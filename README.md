@@ -8,6 +8,42 @@
 [Paper PDF (Arxiv)](https://arxiv.org/abs/2410.15636) | [Project Page](https://heye0507.github.io/LucidFusion_page/) | [Model Weights](https://huggingface.co/heye0507/LucidFusion) | [Gradio Demo](Coming Soon) 
 
 ---
+### Demo results of 512 model
+
+<p align="center">
+  <img src="resources/res_ironman.gif" width="24%" alt="Ironman">
+  <img src="resources/res_hulk.gif" width="24%" alt="Hulk">
+  <img src="resources/res_deadpool.gif" width="24%" alt="Deadpool">
+  <img src="resources/res_team_america.gif" width="24%" alt="Team America">
+</p>
+<p align="center">
+  <img src="resources/res_venom_1.gif" width="24%" alt="Venom">
+  <img src="resources/res_black_widow.gif" width="24%" alt="Black Widow">
+  <img src="resources/res_spiderman.gif" width="24%" alt="Spiderman">
+  <img src="resources/res_superman.gif" width="24%" alt="Superman">
+</p>
+<p align="center">
+  <img src="resources/res_minions.gif" width="24%" alt="Minions">
+  <img src="resources/res_snowman.gif" width="24%" alt="Snowman">
+  <img src="resources/res_d2_witch.gif" width="24%" alt="Diablo 2">
+  <img src="resources/res_harry_porter.gif" width="24%" alt="Harry Porter">
+</p>
+<p align="center">
+  <img src="resources/princess.gif" width="24%" alt="Princess">
+  <img src="resources/res_arabic.gif" width="24%" alt="Arabic">
+  <img src="resources/res_chief.gif" width="24%" alt="Chief">
+  <img src="resources/res_knight.gif" width="24%" alt="Kinght">
+</p>
+<p align="center">
+  <img src="resources/res_cry_witch.gif" width="24%" alt="Witch">
+  <img src="resources/boy_running.gif" width="24%" alt="Boy">
+  <img src="resources/girl_head_3.gif" width="24%" alt="Girl Head">
+  <img src="resources/girl_head_2.gif" width="24%" alt="Girl Head 2">
+</p>
+
+
+---
+### Demo results of 256 model
 
 <div align="center">
     <img src="resources/output_16.gif" width="95%"/>  
@@ -24,20 +60,6 @@ Examples of cross-dataset content creations with our framework, the *LucidFusion
 
 ## 📢 News
 - 2024-11-04: LucidFusion now supports 512x512 resolution inputs. Demo results released, and we will release the model soon!   <be>
-
-### Demo results of 512 model
-
-<p align="center">
-  <img src="resources/princess.gif" width="30%" alt="Princess">
-  <img src="resources/girl_head.gif" width="30%" alt="Girl Head">
-  <img src="resources/boy_running.gif" width="30%" alt="Boy Running">
-</p>
-
-<p align="center">
-  <img src="resources/res_chief.gif" width="30%" alt="Chief">
-  <img src="resources/girl_head_3.gif" width="30%" alt="Girl Head">
-  <img src="resources/res_knight.gif" width="30%" alt="Knight">
-</p>
 
 
 
