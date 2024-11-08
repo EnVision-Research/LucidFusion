@@ -59,7 +59,9 @@ Examples of cross-dataset content creations with our framework, the *LucidFusion
 </div>
 
 ## 📢 News
-- 2024-11-04: LucidFusion now supports 512x512 resolution inputs. Demo results released, and we will release the model soon!   <be>
+- 2024-11-08: We added 3 new preprocessed example cases for 256x256 resolution inputs. You can now run "dr_strange", "superman", and "minions_stuart" using demo.sh <br>
+- 2024-11-04: LucidFusion now supports 512x512 resolution inputs. Demo results released, and we will release the model soon!   <br>
+
 
 
 
@@ -175,6 +177,7 @@ Please note this demo is still under development, and check back later for the f
 
 - [x] Release the inference codes
 - [x] Release our weights
+- [ ] Release our high resolution input model weights
 - [ ] Release the Gardio Demo
 - [ ] Release the Stage 1 and 2 training codes
 

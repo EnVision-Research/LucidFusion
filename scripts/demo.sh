@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 YAML="options/demo.yaml"
-DEMO='examples/nutella_new'
+DEMO='examples/dr_strange'
 OUTPUT='output/demo'
 MODEL_KEY='pretrained/'
 export CUDA_VISIBLE_DEVICES='0'
