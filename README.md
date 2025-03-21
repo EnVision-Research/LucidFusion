@@ -1,4 +1,4 @@
-# LucidFusion: Generating 3D Gaussians with Arbitrary Unposed Images
+# LucidFusion: Reconstructing 3D Gaussians with Arbitrary Unposed Images
 
 [Hao He](https://heye0507.github.io/)$^{\*}$ [Yixun Liang](https://yixunliang.github.io/)$^{\*}$, [Luozhou Wang](https://wileewang.github.io/), [Yuanhao Cai](https://github.com/caiyuanhao1998), [Xinli Xu](https://scholar.google.com/citations?user=lrgPuBUAAAAJ&hl=en&inst=1381320739207392350), [Hao-Xiang Guo](), [Xiang Wen](), [Yingcong Chen](https://www.yingcong.me)$^{\**}$
 
@@ -8,7 +8,6 @@
 [Paper PDF (Arxiv)](https://arxiv.org/abs/2410.15636) | [Project Page](https://heye0507.github.io/LucidFusion_page/) | [Model Weights](https://huggingface.co/heye0507/LucidFusion) | [Gradio Demo](Coming Soon) 
 
 ---
-### Demo results of 512 model
 
 <p align="center">
   <img src="resources/res_ironman.gif" width="24%" alt="Ironman">
@@ -42,20 +41,11 @@
 </p>
 
 
----
-### Demo results of 256 model
 
 <div align="center">
     <img src="resources/output_16.gif" width="95%"/>  
     <br>
     <p><i>Note: we compress these motion pictures for faster previewing.</i></p>
-</div>
-
-<div align=center>
-<img src="resources/ours_qualitative.jpeg" width="95%"/>  
-  
-Examples of cross-dataset content creations with our framework, the *LucidFusion*, around **~13FPS** on A800.
-
 </div>
 
 ## 📢 News
@@ -66,11 +56,11 @@ Examples of cross-dataset content creations with our framework, the *LucidFusion
 
 
 ## 🎏 Abstract
-We present a flexible end-to-end feed-forward framework, named the *LucidFusion*, to generate high-resolution 3D Gaussians from unposed, sparse, and arbitrary numbers of multiview images.
+We present a flexible end-to-end feed-forward framework, named the *LucidFusion*, to reconstruct high-resolution 3D Gaussians from unposed, sparse, and arbitrary numbers of multiview images.
 
 <details><summary>CLICK for the full abstract</summary>
 
-> Recent large reconstruction models have made notable progress in generating high-quality 3D objects from single images. However, these methods often struggle with controllability, as they lack information from multiple views, leading to incomplete or inconsistent 3D reconstructions. To address this limitation, we introduce LucidFusion, a flexible end-to-end feed-forward framework that leverages the Relative Coordinate Map (RCM).  Unlike traditional methods linking images to 3D world thorough pose, LucidFusion utilizes RCM to align geometric features coherently across different views, making it highly adaptable for 3D generation from arbitrary, unposed images. Furthermore, LucidFusion seamlessly integrates with the original single-image-to-3D pipeline, producing detailed 3D Gaussians at a resolution of $512 \times 512$, making it well-suited for a wide range of applications.
+> Recent large reconstruction models have made notable progress in generating high-quality 3D objects from single images. However, current reconstruction methods often rely on explicit camera pose estimation or fixed viewpoints, restricting their flexibility and practical applicability. We reformulate 3D reconstruction as image-to-image translation and introduce the Relative Coordinate Map (RCM), which aligns multiple unposed images to a “main” view without pose estimation. While RCM simplifies the process, its lack of global 3D supervision can yield noisy outputs. To address this, we propose Relative Coordinate Gaussians (RCG) as an extension to RCM, which treats each pixel’s coordinates as a Gaussian center and employs differentiable rasterization for consistent geometry and pose recovery. Our LucidFusion framework handles an arbitrary number of unposed inputs, producing robust 3D reconstructions within seconds and paving the way for more flexible, pose-free 3D pipelines.
 
 </details>
 
